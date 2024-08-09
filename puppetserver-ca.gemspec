@@ -13,11 +13,11 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{A simple CLI tool for interacting with Puppet Server's Certificate Authority}
   spec.homepage      = "https://github.com/puppetlabs/puppetserver-ca-cli/"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
+  spec.files         = `git ls-files -z`.split("\x0").select do |f|
+    f.start_with?('LICENSE', 'README.md', 'lib/')
   end
   spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables   = "puppetserver-ca"
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "facter", [">= 2.0.1", "< 5"]
